@@ -9,11 +9,13 @@
 
 ## Working Rules
 
+- Always use the Composition API for new and changed Vue code.
 - Prefer Vue 3 Composition API with `<script setup lang="ts">` for new components and views.
 - Keep components small and colocate related logic in the same feature area when practical.
 - Use the existing router structure in `src/router/index.ts` for navigation changes.
 - Use `@/` imports for files under `src/` instead of long relative paths.
 - Preserve the current Vite + Vue + TypeScript setup unless the user explicitly asks for a framework change.
+- Use Bootstrap for design and UI styling whenever possible.
 
 ## UI and Code Style
 
