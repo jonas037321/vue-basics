@@ -1,15 +1,13 @@
-<template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
-</template>
+<script setup lang="ts">
+const pageTitle = 'Über Uns'
+const pageLead = 'Hier steht eine kurze Beschreibung des Projekts und seines Zwecks.'
+</script>
 
-<style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-}
-</style>
+<template>
+  <section>
+    <h1 class="h3 mb-3">{{ pageTitle }}</h1>
+    <p class="mb-0">
+      {{ pageLead }}
+    </p>
+  </section>
+</template>
