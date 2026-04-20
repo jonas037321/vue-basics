@@ -1,22 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap');
 @import './base.css';
+
+:root {
+  --page-bg: #070b16;
+  --surface: rgba(10, 16, 32, 0.84);
+  --surface-strong: rgba(8, 12, 24, 0.94);
+  --line: rgba(255, 255, 255, 0.12);
+  --text-bright: rgba(255, 255, 255, 0.96);
+  --text-soft: rgba(226, 232, 240, 0.76);
+  --accent: #7c3aed;
+  --accent-2: #22d3ee;
+  --accent-3: #f97316;
+}
+
+html {
+  background: var(--page-bg);
+}
+
+body {
+  min-height: 100vh;
+  color: var(--text-bright);
+  background:
+    radial-gradient(circle at 15% 15%, rgba(34, 211, 238, 0.18), transparent 24%),
+    radial-gradient(circle at 85% 12%, rgba(124, 58, 237, 0.22), transparent 24%),
+    radial-gradient(circle at 50% 100%, rgba(249, 115, 22, 0.14), transparent 30%),
+    linear-gradient(180deg, #050816 0%, #090f1d 45%, #060913 100%);
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+}
 
 #app {
   width: 100%;
-  max-width: 1440px;
+  max-width: 1520px;
   margin: 0 auto;
-  padding: 1.5rem;
-  font-weight: normal;
+  padding: 1.25rem;
+  font-weight: 400;
 }
 
 a {
   text-decoration: none;
 }
 
-body {
-  background:
-    radial-gradient(circle at top left, rgba(31, 60, 136, 0.14), transparent 32%),
-    radial-gradient(circle at bottom right, rgba(24, 49, 83, 0.12), transparent 28%),
-    var(--color-background);
+* {
+  scrollbar-color: rgba(34, 211, 238, 0.45) transparent;
 }
 
 @media (min-width: 1024px) {
