@@ -289,7 +289,7 @@ import { RouterLink, RouterView } from 'vue-router'
   box-shadow: 0 16px 50px rgba(0, 0, 0, 0.25);
 }
 
-@media (max-width: 991.98px) {
+@media (max-width: 575.98px) {
   .content-grid {
     grid-template-columns: 1fr;
   }

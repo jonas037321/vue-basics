@@ -31,6 +31,7 @@
 	- `npm run lint`
 	- `npm run build`
 - Always verify accessibility for UI changes, especially keyboard navigation, semantic structure, contrast, and meaningful labels.
+- Always verify responsive design for UI changes, especially layout behavior at mobile, tablet, and desktop breakpoints.
 - If you touch only formatting-sensitive files, `npm run format` may be enough when appropriate.
 
 ## Notes for Future Changes
