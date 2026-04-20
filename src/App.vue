@@ -277,7 +277,7 @@ import { RouterLink, RouterView } from 'vue-router'
   padding: 0.8rem 0.9rem;
   color: var(--text-bright);
   font-size: 0.95rem;
-}
+} 
 
 .site-footer {
   background: rgba(8, 12, 24, 0.92);

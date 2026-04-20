@@ -11,3 +11,10 @@
 - oben soll die Navigation sein
 - im Hauptbereich soll ein 2spaltiges Layout (Inhalt, Sidebar) vorhanden sein
 - unten soll ein footer sein
+
+
+## Feature 3 - 20.04.2026 - Registrierung
+
+- Registrierungs View (Formular) erzeugen
+- TS (TypeScript) verwenden (Klasse, Validierung)
+- TS - die eingeg. Daten an WebAPI senden

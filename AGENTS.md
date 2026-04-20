@@ -10,6 +10,7 @@
 ## Working Rules
 
 - Always use the Composition API for new and changed Vue code.
+- Always use the Composition API for all Vue code.
 - Prefer Vue 3 Composition API with `<script setup lang="ts">` for new components and views.
 - Keep components small and colocate related logic in the same feature area when practical.
 - Use the existing router structure in `src/router/index.ts` for navigation changes.
