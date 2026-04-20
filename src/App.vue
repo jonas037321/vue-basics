@@ -4,11 +4,13 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <template>
   <div class="app-shell">
+    <a class="skip-link" href="#main-content">Direkt zum Inhalt springen</a>
+
     <header class="site-header">
       <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid px-0">
           <RouterLink class="navbar-brand fw-semibold" to="/">
-            <span class="brand-mark">VB</span>
+            <span class="brand-mark" aria-hidden="true">VB</span>
             <span class="brand-text">Vue Basics</span>
           </RouterLink>
 
@@ -33,16 +35,18 @@ import { RouterLink, RouterView } from 'vue-router'
 
             <div class="navbar-nav ms-lg-auto mt-3 mt-lg-0">
               <div class="nav-item dropdown">
-                <a
+                <button
                   id="accountDropdown"
-                  class="nav-link dropdown-toggle"
-                  href="#"
+                  class="nav-link dropdown-toggle dropdown-trigger"
+                  type="button"
                   role="button"
                   data-bs-toggle="dropdown"
+                  data-bs-auto-close="outside"
                   aria-expanded="false"
+                  aria-haspopup="true"
                 >
                   Konto
-                </a>
+                </button>
 
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accountDropdown">
                   <li>
@@ -64,7 +68,7 @@ import { RouterLink, RouterView } from 'vue-router'
       </nav>
     </header>
 
-    <main class="site-main container-fluid px-0">
+    <main id="main-content" class="site-main container-fluid px-0">
       <div class="content-grid">
         <section class="content-panel card border-0 shadow-sm">
           <div class="card-body p-4 p-lg-5">
@@ -107,6 +111,23 @@ import { RouterLink, RouterView } from 'vue-router'
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: 0.75rem;
+  z-index: 1000;
+  padding: 0.8rem 1rem;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #08111f;
+  transform: translateY(-180%);
+  transition: transform 160ms ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
 }
 
 .site-header {
@@ -186,6 +207,11 @@ import { RouterLink, RouterView } from 'vue-router'
 
 .site-header :deep(.dropdown-toggle::after) {
   margin-left: 0.7rem;
+}
+
+.dropdown-trigger {
+  border: 0;
+  background: transparent;
 }
 
 .site-main {

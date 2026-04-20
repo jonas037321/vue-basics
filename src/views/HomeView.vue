@@ -22,7 +22,7 @@ const pageLead = 'Willkommen auf der Startseite dieser Vue-Anwendung.'
         <span class="hero-card-label">Aktueller Fokus</span>
         <span class="hero-card-value">Schnell, klar, direkt</span>
       </div>
-      <div class="hero-card-chart">
+      <div class="hero-card-chart" aria-hidden="true">
         <span></span>
         <span></span>
         <span></span>

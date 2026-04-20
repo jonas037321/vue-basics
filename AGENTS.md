@@ -30,6 +30,7 @@
 	- `npm run type-check`
 	- `npm run lint`
 	- `npm run build`
+- Always verify accessibility for UI changes, especially keyboard navigation, semantic structure, contrast, and meaningful labels.
 - If you touch only formatting-sensitive files, `npm run format` may be enough when appropriate.
 
 ## Notes for Future Changes
