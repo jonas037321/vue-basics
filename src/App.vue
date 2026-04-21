@@ -29,8 +29,6 @@ import { RouterLink, RouterView } from 'vue-router'
           <div id="siteNavigation" class="collapse navbar-collapse">
             <div class="navbar-nav me-lg-auto gap-lg-2">
               <RouterLink class="nav-link" to="/">Home</RouterLink>
-              <RouterLink class="nav-link" to="/about">Über Uns</RouterLink>
-              <RouterLink class="nav-link" to="/impressum">Impressum</RouterLink>
             </div>
 
             <div class="navbar-nav ms-lg-auto mt-3 mt-lg-0">
@@ -72,6 +70,10 @@ import { RouterLink, RouterView } from 'vue-router'
       <div class="content-grid">
         <section class="content-panel card border-0 shadow-sm">
           <div class="card-body p-4 p-lg-5">
+
+          <!-- an dieser Stelle wird die Komponente angezeigt, die zur aktuellen View passt
+          alle Routen werden in src/router/index.ts definiert und mit den entsprechenden Komponenten verknüpft 
+          -->
             <RouterView />
           </div>
         </section>
@@ -99,7 +101,15 @@ import { RouterLink, RouterView } from 'vue-router'
 
     <footer class="site-footer">
       <div class="container-fluid px-0">
-        <p class="mb-0">© 2026 Vue Basics. Alle Rechte vorbehalten.</p>
+        <div class="footer-layout">
+          <p class="mb-0">© 2026 Vue Basics. Alle Rechte vorbehalten.</p>
+
+          <nav class="footer-nav" aria-label="Footer Navigation">
+            <RouterLink class="footer-link" to="/about">Über Uns</RouterLink>
+            <RouterLink class="footer-link" to="/kontakt">Kontakt</RouterLink>
+            <RouterLink class="footer-link" to="/impressum">Impressum</RouterLink>
+          </nav>
+        </div>
       </div>
     </footer>
   </div>
@@ -285,8 +295,36 @@ import { RouterLink, RouterView } from 'vue-router'
   border: 1px solid var(--line);
   border-radius: 1.2rem;
   padding: 1rem 1.25rem;
-  text-align: center;
+  font-size: 0.8rem;
   box-shadow: 0 16px 50px rgba(0, 0, 0, 0.25);
+}
+
+.footer-layout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.footer-link {
+  color: rgba(255, 255, 255, 0.88);
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+}
+
+.footer-link:hover,
+.footer-link.router-link-exact-active {
+  color: #fff;
+  border-color: var(--line);
+  background: rgba(255, 255, 255, 0.06);
 }
 
 @media (max-width: 575.98px) {
@@ -300,6 +338,11 @@ import { RouterLink, RouterView } from 'vue-router'
 
   .status-grid {
     grid-template-columns: 1fr;
+  }
+
+  .footer-layout {
+    align-items: flex-start;
+    flex-direction: column;
   }
 }
 </style>

@@ -1,32 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { defineComponent } from 'vue'
 import HomeView from '../views/HomeView.vue'
 import AboutView from '../views/AboutView.vue'
-
-const StaticPageView = (title: string, description: string) =>
-  defineComponent({
-    name: `${title.replace(/\s+/g, '')}View`,
-    template: `
-      <section>
-        <h1 class="h3 mb-3">${title}</h1>
-        <p class="mb-0">${description}</p>
-      </section>
-    `,
-  })
-
-const ImpressumView = StaticPageView(
-  'Impressum',
-  'Dieses Impressum ist ein Platzhalter für die spätere rechtliche Ausgestaltung.',
-)
-
-const LoginView = StaticPageView('Login', 'Hier wird später das Anmeldeformular angezeigt.')
-
-const RegistrationView = StaticPageView(
-  'Registrierung',
-  'Hier wird später das Registrierungsformular angezeigt.',
-)
-
-const ProfileView = StaticPageView('Profil', 'Hier erscheint später die Profilübersicht.')
+import ContactsView from '../views/ContactsView.vue'
+import ImpressumView from '../views/ImpressumView.vue'
+import LoginView from '../views/LoginView.vue'
+import RegistrationView from '../views/RegistrationView.vue'
+import ProfileView from '../views/ProfileView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -40,6 +19,11 @@ const router = createRouter({
       path: '/about',
       name: 'about',
       component: AboutView,
+    },
+    {
+      path: '/kontakt',
+      name: 'contacts',
+      component: ContactsView,
     },
     {
       path: '/impressum',

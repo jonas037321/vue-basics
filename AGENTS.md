@@ -22,6 +22,7 @@
 
 - Follow the existing single-file component style used in the project.
 - Keep template, script, and style sections readable and minimal.
+- Use German names for displayed labels and visible text, but use English terms for code identifiers such as view names.
 - Prefer descriptive names for views, components, routes, and reactive state.
 - Match the current styling approach unless a redesign is requested.
 
