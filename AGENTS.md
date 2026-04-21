@@ -24,6 +24,8 @@
 - Keep template, script, and style sections readable and minimal.
 - Use German names for displayed labels and visible text, but use English terms for code identifiers such as view names.
 - Prefer descriptive names for views, components, routes, and reactive state.
+- Follow TypeScript naming best practices: use `camelCase` for variables and functions, `PascalCase` for classes, components, interfaces, and type aliases, and meaningful boolean names such as `isLoaded`, `hasData`, or `canEdit`.
+- Avoid single-letter or ambiguous TypeScript identifiers unless a short loop index or a well-known generic type parameter is required.
 - Match the current styling approach unless a redesign is requested.
 
 ## Validation
