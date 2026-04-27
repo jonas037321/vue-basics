@@ -4,6 +4,7 @@
 import { ref } from 'vue'
 // hier importieren wir die User KLasse und das Gender Enum aus unserem Modell
 import { Gender, User } from '@/models/User'
+import { RegistrationValidator } from '@/validators/RegistrationValidator'
 
 const pageTitle = 'Registrierung'
 
@@ -15,15 +16,43 @@ const benutzername = ref('')
 const geburtsdatum = ref('')
 const email = ref('')
 const kennwort = ref('')
+const kennwortWiederholen = ref('')
 const geschlecht = ref<Gender>(Gender.Unknown)
 
 const createdUser = ref<User | null>(null)
+const validationErrors = ref<string[]>([])
 
 const handleSubmit = () => {
+  validationErrors.value = []
+  createdUser.value = null
 
-  // Validierung der Eingabedaten
+  if (!RegistrationValidator.isStringOk(benutzername.value)) {
+    validationErrors.value.push('Der Benutzername muss mindestens 3 Zeichen lang sein.')
+  }
+
+  if (!RegistrationValidator.isEmailOk(email.value)) {
+    validationErrors.value.push('Bitte gib eine gültige E-Mail-Adresse ein.')
+  }
+
+  if (!RegistrationValidator.isPasswordOk(kennwort.value, kennwortWiederholen.value)) {
+    validationErrors.value.push(
+      'Das Kennwort muss mindestens 8 Zeichen lang sein, Groß- und Kleinbuchstaben, eine Zahl, ein Sonderzeichen enthalten und mit der Wiederholung übereinstimmen.',
+    )
+  }
+
+  if (!geburtsdatum.value) {
+    validationErrors.value.push('Bitte gib ein Geburtsdatum an.')
+  }
+
+  if (validationErrors.value.length > 0) {
+    return
+  }
 
   // an die API senden
+ // 2 Möglichkeiten:
+  // - fetch (native JavaScript, aber etwas umständlich) --> von uns verwendet
+  // - axios (beliebte externe Bibliothek, die das Arbeiten mit APIs erleichtert
+
 
   // Rückmeldung an den Benutzer
   createdUser.value = new User(
@@ -60,6 +89,12 @@ const handleSubmit = () => {
       <input v-model="geburtsdatum" class="form-control" type="date" />
       <input v-model="email" class="form-control" type="email" placeholder="E-Mail" />
       <input v-model="kennwort" class="form-control" type="password" placeholder="Kennwort" />
+      <input
+        v-model="kennwortWiederholen"
+        class="form-control"
+        type="password"
+        placeholder="Kennwort wiederholen"
+      />
 
       <select v-model="geschlecht" class="form-select">
         <option :value="Gender.Unknown">Geschlecht</option>
@@ -67,6 +102,12 @@ const handleSubmit = () => {
         <option :value="Gender.Female">Weiblich</option>
         <option :value="Gender.Diverse">Divers</option>
       </select>
+
+      <div v-if="validationErrors.length" class="alert alert-danger mb-0" role="alert">
+        <ul class="mb-0 ps-3">
+          <li v-for="error in validationErrors" :key="error">{{ error }}</li>
+        </ul>
+      </div>
 
       <button class="btn btn-primary" type="submit">Registrieren</button>
     </form>
