@@ -1,8 +1,15 @@
 <script setup lang="ts">
+
+// hier wird eine Komponente von Vue importiert
 import { ref } from 'vue'
+// hier importieren wir die User KLasse und das Gender Enum aus unserem Modell
 import { Gender, User } from '@/models/User'
 
 const pageTitle = 'Registrierung'
+
+// hier werden Variablen definiert
+// ref() ist eine Funktion von Vue, die es uns ermöglicht, reaktive Daten zu erstellen. 
+// Das bedeutet, dass wenn sich der Wert dieser Variablen ändert, die Benutzeroberfläche automatisch aktualisiert wird, um die neuen Werte anzuzeigen.
 
 const benutzername = ref('')
 const geburtsdatum = ref('')
@@ -13,6 +20,12 @@ const geschlecht = ref<Gender>(Gender.Unknown)
 const createdUser = ref<User | null>(null)
 
 const handleSubmit = () => {
+
+  // Validierung der Eingabedaten
+
+  // an die API senden
+
+  // Rückmeldung an den Benutzer
   createdUser.value = new User(
     benutzername.value,
     new Date(geburtsdatum.value),
@@ -21,9 +34,24 @@ const handleSubmit = () => {
     geschlecht.value,
   )
 }
+
 </script>
 
 <template>
+  <!--
+  in form:
+    @submit.prevent="handleSubmit" ... prevent bedeutet, dass das Standardverhalten
+       (Formular wird abgeschickt und Seite neu geladen) verhindert wird, damit wir stattdessen
+       mit JavaScript die Daten verarbeiten können
+
+       handleSubmit ist die Funktion, die aufgerufen wird, wenn das Formular abgeschickt wird.
+
+
+  
+  
+    v-model="...": ... bindet den Wert des Eingabefelds an die entsprechende Variable (z.B. benutzername, geburtsdatum, etc.)
+        Dadurch wird die Variable automatisch aktualisiert, wenn der Benutzer etwas eingibt.
+  -->
   <section>
     <h1 class="h3 mb-3">{{ pageTitle }}</h1>
 
