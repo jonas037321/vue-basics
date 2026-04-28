@@ -34,3 +34,19 @@
 - WebAPI-Projekt
 - ORM-Projekt
 - Models-Projekt
+
+
+## Feature 6 - 28.04.2026 - Backend - Strutkur erzeugen lassen
+
+- erzeuge eine Visual Studio Projektmappe (.Net/ C#): Name: backend
+ im Ordner backend parallel zum Vue-Projekt (vue - basics)
+- erzeuge  ein Asp.Net Core WebApi - Projekt in deiser Projektmappe Name: Api
+erzeuge eine Klassenbibliothek (Name: ORM) in dieser Projektmappe
+- erzeuge eine Klassenbibliothek (name: Models) in dieser Projektmappe
+- binde das Models Projekt in den Projekten Api und ORM ein
+- binde das ORM-Projekt im Projekt Api ein
+- füge die nuget pakete ef core, ef core tools und pomelo (mysql) dem Orm Projekt hinzu
+- füge das Nuget Paket Swagger dem Api Projekt hinzu
+- Swagger soll automatisch bei Programmstart der WEBApi im Browser geladen werden
+- erzeuge eine DbManager Klasse im ORM Projekt inkl. Verbindungszeichenkette für MySQL (user: root, Password: 244466666)
+- erzeuge in Models die Klasse User (Id (int), Username, Email, birthdate, gender (enum: male, female, other), password)

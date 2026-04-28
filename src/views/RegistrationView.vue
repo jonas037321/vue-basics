@@ -54,6 +54,11 @@ const handleSubmit = () => {
   // - axios (beliebte externe Bibliothek, die das Arbeiten mit APIs erleichtert
 
 
+  // unsere API (post-Methode) inkl. Exceptionhandling einbauen
+  //  + Meldung anzeigen (die Meldung soll unterhalb der Formularfelder angezeigt werden)
+
+  //  APIService erstellen und Post Methode schreiben
+
   // Rückmeldung an den Benutzer
   createdUser.value = new User(
     benutzername.value,
