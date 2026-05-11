@@ -52,10 +52,15 @@ export class APIService {
       //   Typ (TResponse (RegistrationResponse)) umgewandelt
       return data as T;
     } catch (err) {
-      throw err;
+      if (err instanceof TypeError) {
+        throw new Error(`Backend nicht erreichbar unter ${url}. Prüfe, ob die API läuft.`);
+      }
+
+      throw err instanceof Error ? err : new Error('Unbekannter API-Fehler.');
     }
   }
 }
 
 const apiService = new APIService();
+apiService.baseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080';
 export default apiService;
