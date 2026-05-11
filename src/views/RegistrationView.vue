@@ -4,7 +4,9 @@
 import { ref } from 'vue'
 // hier importieren wir die User KLasse und das Gender Enum aus unserem Modell
 import { Gender, User } from '@/models/User'
+import { RegistrationRequest } from '@/models/RegistrationRequest'
 import { RegistrationValidator } from '@/validators/RegistrationValidator'
+import apiService from '@/Services/APIService'
 
 const pageTitle = 'Registrierung'
 
@@ -21,10 +23,12 @@ const geschlecht = ref<Gender>(Gender.Unknown)
 
 const createdUser = ref<User | null>(null)
 const validationErrors = ref<string[]>([])
+const apiError = ref('')
 
-const handleSubmit = () => {
+const handleSubmit = async () => {
   validationErrors.value = []
   createdUser.value = null
+  apiError.value = ''
 
   if (!RegistrationValidator.isStringOk(benutzername.value)) {
     validationErrors.value.push('Der Benutzername muss mindestens 3 Zeichen lang sein.')
@@ -57,16 +61,33 @@ const handleSubmit = () => {
   // unsere API (post-Methode) inkl. Exceptionhandling einbauen
   //  + Meldung anzeigen (die Meldung soll unterhalb der Formularfelder angezeigt werden)
 
-  //  APIService erstellen und Post Methode schreiben
+  // + Mapping (forEachLeadingCommentRange.Daten in eine RegistrationRequest Klasse umwandeln
+  //    diese Klasse muss auch noch erzeugt werden)
+  
 
-  // Rückmeldung an den Benutzer
-  createdUser.value = new User(
+  //  APIService erstellen und Post Methode schreiben
+  const registrationRequest = new RegistrationRequest(
     benutzername.value,
-    new Date(geburtsdatum.value),
     email.value,
-    kennwort.value,
+    geburtsdatum.value,
     geschlecht.value,
+    kennwort.value,
   )
+
+  try {
+    await apiService.post<void>('/api/register', registrationRequest)
+
+    // Rückmeldung an den Benutzer
+    createdUser.value = new User(
+      benutzername.value,
+      new Date(geburtsdatum.value),
+      email.value,
+      kennwort.value,
+      geschlecht.value,
+    )
+  } catch (error) {
+    apiError.value = error instanceof Error ? error.message : 'Registrierung fehlgeschlagen.'
+  }
 }
 
 </script>
@@ -114,6 +135,12 @@ const handleSubmit = () => {
         </ul>
       </div>
 
+      <div v-if="apiError" class="alert alert-warning mb-0" role="alert">
+        {{ apiError }}
+      </div>
+
+      <!-- Meldung ausgeben-->
+       
       <button class="btn btn-primary" type="submit">Registrieren</button>
     </form>
 
